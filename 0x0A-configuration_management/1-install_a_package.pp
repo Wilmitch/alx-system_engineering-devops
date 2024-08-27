@@ -1,13 +1,13 @@
 #Installs flask version 2.1.0 with werkzeug
 
-package { 'flask':
-  ensure   => '2.1.0',
+package { ['flask', 'werkzeug']:
+  ensure   => 'installed',
   provider => 'pip3',
 }
 
-package { 'werkzeug':
-  ensure   => 'installed',
-  provider => 'pip3',
-  require  => Package['flask'],
+exec { 'install_flask_version':
+  command => 'pip3 install flask==2.1.0',
+  unless  => 'pip3 show flask | grep -q "Version: 2.1.0"',
+  require => Package['flask'],
 }
 
