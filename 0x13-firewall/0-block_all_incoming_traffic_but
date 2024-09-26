@@ -1,10 +1,25 @@
-sudo apt-get -y update
-sudo apt-get -y install ufw
-sudo ufw disable
+echo -e "Updating the System\n"
+
+sudo apt-get update
+
+echo -e "Installing UFW\n"
+
+sudo apt-get install -y ufw
+
+echo -e "configuring UFW to allow Outgoing traffic and deny incoming traffic...\n"
+
+# Allow Outgoing and Deny Incoming Traffic
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
-sudo systemctl stop ufw
-sudo ufw allow 22/tcp
-sudo ufw allow 443/tcp
-sudo ufw allow 80/tcp
+
+echo -e "Allow incoming traffic on port 22, 80 and 443\n"
+# Allow ports
+sudo ufw allow 22
+sudo ufw allow 80
+sudo ufw allow 443
+
+echo -e "Enabling UFW\n"
+# Enable Fire Wall
 sudo ufw enable
+
+echo -e "Installation and Configuration Completed!\n\nEnjoy.\n"
